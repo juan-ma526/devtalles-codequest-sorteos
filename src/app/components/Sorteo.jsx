@@ -16,11 +16,10 @@ const Sorteo = ({sorteo}) => {
                 <Link href={"/post/" + sorteo.id} className="text-lg font-bold sm:text-xl md:text-2xl">{sorteo.title}</Link>
                 <p className="text-sm text-black">{sorteo.description.substring(0,100).concat('...')}</p>
                 <div className="pt-2 pr-0 pb-0 pl-0">
-                    <a className="inline text-xs font-medium mt-0 mr-1 mb-0 ml-0 underline">Admin</a>
                     {/* <p className="inline text-xs font-medium mt-0 mr-1 mb-0 ml-1">{
                         format(new Date(sorteo.createdAt), 'MMMM do yyyy, h:mm:ss a')
                     }</p> */}
-                    <p className="inline text-xs font-medium text-gray-300 mt-0 mr-1 mb-0 ml-1">1hr 20min. read</p>
+                   <Link  className="px-4 py-2 text-xs font-bold text-white uppercase transition-all duration-150 bg-purple-500 rounded shadow outline-none active:bg-purple-600 hover:shadow-md focus:outline-none ease" href="/login">Participar</Link>
                 </div>
             </div>
         </>
