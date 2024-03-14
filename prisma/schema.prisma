@@ -45,6 +45,7 @@ model Usuario {
    email String @unique
    password String
    name String?
+   
 }
 
 model Participante {
@@ -63,3 +64,4 @@ model Sorteo {
   image String
   createdAt DateTime @default(now())
 }
+
