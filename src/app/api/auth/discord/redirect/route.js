@@ -86,15 +86,19 @@ export async function GET(request) {
           },
         });
       } else {
-        return NextResponse.json({ message: "El usuario no pertenece a el servidor DevTalles" }, { status: 400 });
+        const notfoundUrl = new URL("/user-notfound", request.url);
+
+        notfoundUrl.searchParams.set("from", request.nextUrl.pathname);
+
+        return NextResponse.redirect(notfoundUrl);
       }
 
       // Given an incoming request...
-      const homeUrl = new URL("/", request.url);
+      const successUrl = new URL("/success", request.url);
       // Add ?from=/incoming-url to the /login URL
-      homeUrl.searchParams.set("from", request.nextUrl.pathname);
+      successUrl.searchParams.set("from", request.nextUrl.pathname);
       // And redirect to the new URL
-      return NextResponse.redirect(homeUrl);
+      return NextResponse.redirect(successUrl);
     }
   } catch (error) {
     console.error("Error en la solicitud:", error.message);
