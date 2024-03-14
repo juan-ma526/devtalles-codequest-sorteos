@@ -13,7 +13,7 @@ const Header = () => {
                             alt="Logo"
                             src="/logo.png" class="w-2/3" loading="lazy" />
                     </Link>
-                    <h1 className="text-lg md:text-2xl font-bold text-black"><span className="text-purple-500">Sorteos</span></h1>
+                    <h1 className="text-lg md:text-2xl font-bold text-black"><span className="text-[#2F0A6F]">Sorteos</span></h1>
 
                     <nav className="flex flex-wrap items-center justify-center pl-6 ml-6 text-base border-l border-gray-200 md:mr-auto">
                         <Link href={"/"} className="mr-5 font-medium hover:text-gray-900">Home</Link>
