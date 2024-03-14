@@ -6,13 +6,13 @@ export default function Home() {
    {
     id: 1,
     title: "Sorteo 1",
-    description: "Description sorteo 1  test",
+    description: "Obcaecati, quam? Eligendi, nulla numquam natus laborum porro at cum, consectetur ullam tempora ipsa iste officia sed officiis! Incidunt ea animi officiis.",
     createdAt: "",
    },
    {
     id: 2,
     title: "Sorteo 2",
-    description: "Description sorteo  2  stest",
+    description: "Obcaecati, quam? Eligendi, nulla numquam natus laborum porro at cum, consectetur ullam tempora ipsa iste officia sed officiis! Incidunt ea animi officiis.",
     createdAt: "",
    }
 
