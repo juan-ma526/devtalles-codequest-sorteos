@@ -45,17 +45,18 @@ model Usuario {
    email String @unique
    password String
    name String?
+   
 }
 
 model Participante {
-   id String @id @default(uuid()) @map("_id") @db.ObjectId
+   id String @id @default(auto()) @map("_id") @db.ObjectId
    username String
-   email String
+   email String @unique
    avatar String?
 }
 
 model Sorteo {
-  id String @id @default(uuid()) @map("_id") @db.ObjectId
+  id String @id @default(auto()) @map("_id") @db.ObjectId
   name String
   description String
   startDate DateTime
@@ -63,3 +64,4 @@ model Sorteo {
   image String
   createdAt DateTime @default(now())
 }
+
