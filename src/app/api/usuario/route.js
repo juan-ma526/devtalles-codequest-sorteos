@@ -5,3 +5,4 @@ export async function GET(request) {
   const user = await prisma.usuario.findMany();
   return NextResponse.json({ hola: "mundo", user });
 }
+

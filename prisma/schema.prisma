@@ -41,7 +41,7 @@ datasource db {
 
 
 model Usuario {
-   id String @id @default(uuid()) @map("_id") @db.ObjectId
+   id String @id @default(auto()) @map("_id") @db.ObjectId
    email String @unique
    password String
    name String?
