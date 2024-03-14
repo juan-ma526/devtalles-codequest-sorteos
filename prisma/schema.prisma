@@ -48,14 +48,14 @@ model Usuario {
 }
 
 model Participante {
-   id String @id @default(uuid()) @map("_id") @db.ObjectId
+   id String @id @default(auto()) @map("_id") @db.ObjectId
    username String
    email String
    avatar String?
 }
 
 model Sorteo {
-  id String @id @default(uuid()) @map("_id") @db.ObjectId
+  id String @id @default(auto()) @map("_id") @db.ObjectId
   name String
   description String
   startDate DateTime
