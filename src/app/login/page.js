@@ -1,10 +1,14 @@
 import Login from "./components/Login";
 
-export default function login() {
+export const metadata = {
+  title: "Login Page",
+  description: "Pagina para realizar el login del administrador",
+};
 
+export default function LoginPage() {
   return (
     <main>
-        <Login />
+      <Login />
     </main>
   );
 }
