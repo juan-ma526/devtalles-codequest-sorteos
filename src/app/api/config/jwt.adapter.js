@@ -1,17 +1,16 @@
-import jwt from 'jsonwebtoken';
+import jwt from "jsonwebtoken";
 
-export const jwtAdapter={
+export const jwtAdapter = {
+  generateToken: async (payload, duration = "2h", jwt_seed = process.env.TOKEN_SECRET) => {
+    return new Promise((resolve, reject) => {
+      jwt.sign(`${payload}`, jwt_seed, (err, token) => {
+        if (err) return reject(err);
+        resolve(token);
+      });
+    });
+  },
 
-    generateToken:async(payload,duration="2h",jwt_seed=process.env.TOKEN_SECRET)=>{
-        return new Promise((resolve,reject) => {
-            jwt.sign(`${payload}`, jwt_seed ,(err, token) => {
-              
-              if ( err ) return reject(err);
-              resolve(token)
-      
-            });
-          })
-    },
+
 
     validateToken:(token)=>{
 
@@ -28,3 +27,4 @@ export const jwtAdapter={
       
     }
 }
+
