@@ -11,15 +11,22 @@ export async function GET(request) {
     const verifyToken=await jwtAdapter.validateToken(token);
     if(!verifyToken) return NextResponse.json({ message: "token no valido para el usuario" },{status:400});
 
-    const userData=await prisma.usuario.findUnique({
-        where:{
-            id:verifyToken
-        }
-    })
 
-    const {password,...rest}=userData;
-
-
-    return NextResponse.json({user:rest});
+    try {
+        const userData=await prisma.usuario.findUnique({
+            where:{
+                id:verifyToken
+            }
+        })
+    
+        const {password,...rest}=userData;
+    
+    
+        return NextResponse.json({user:rest});
+        
+    } catch (error) {
+        console.log(error);
+        return NextResponse.json({ message: "ERROR AL DEVOLVER EL USUARIO DEL BACKEND" },{status:500});
+    }
   
 }
