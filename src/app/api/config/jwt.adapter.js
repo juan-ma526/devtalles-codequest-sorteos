@@ -10,13 +10,21 @@ export const jwtAdapter = {
     });
   },
 
-  validateToken: (token) => {
-    return new Promise((resolve) => {
-      jwt.verify(token, (jwt_seed = process.env.TOKEN_SECRET), (err, decoded) => {
-        if (err) return resolve(null);
 
-        resolve(decoded);
-      });
-    });
-  },
-};
+
+    validateToken:(token)=>{
+
+      return new Promise( (resolve) => {
+
+        jwt.verify( token, process.env.TOKEN_SECRET, (err, decoded) => {
+  
+          if( err ) return resolve(null);
+  
+          resolve( decoded);
+  
+        });
+      })
+      
+    }
+}
+
