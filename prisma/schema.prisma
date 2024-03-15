@@ -61,7 +61,7 @@ model Sorteo {
   description String
   startDate DateTime
   status Boolean @default(false)
-  image String
+  image String?
   createdAt DateTime @default(now())
 }
 
