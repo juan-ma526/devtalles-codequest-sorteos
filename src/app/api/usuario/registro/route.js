@@ -22,13 +22,15 @@ export async function POST(request){
   }
   const token=await jwtAdapter.generateToken(userPost.id);
 
-  return NextResponse.json({ 
+  const response= NextResponse.json({ 
     user:{
       id:userPost.id,
       email:userPost.email,
       name:userPost.name
-    },
-    token:token
+    }
   });
+
+  response.cookies.set('token',token);
+  return response;
 }
 
