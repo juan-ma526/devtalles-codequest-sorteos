@@ -14,10 +14,10 @@ const Sorteo = ({ sorteo }) => {
   return (
     <>
       <>
-        <div className="bg-white rounded-2xl shadow-xl px-8 py-8 sm:px-8 lg:px-8">
-          <div className="mb-12 space-y-4">
+        <div className="flex flex-col bg-white rounded-2xl shadow-xl px-8 py-8 sm:px-8 lg:px-8">
+          <div className="mb-12 space-y-4 h-30s">
             <h3 className="text-2xl font-semibold text-purple-900">{sorteo.name}</h3>
-            <p className="mb-6">{sorteo.description}</p>
+            <p className="mb-6 h-30">{sorteo.description}</p>
           </div>
           <button
             onClick={() => handleClick(sorteo.id)}
@@ -30,7 +30,7 @@ const Sorteo = ({ sorteo }) => {
             width={900}
             alt={sorteo.title}
             src="/wink.png"
-            className="w-2/3 ml-auto -mb-8"
+            className="w-2/3 ml-auto"
             loading="lazy"
           />
         </div>

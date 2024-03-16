@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import useModal from "../hooks/useModal";
 import CreateSorteo from "./CreateSorteo";
+import axios from "axios";
 
 const ListaSorteos = ({ sorteos }) => {
 
@@ -23,6 +24,29 @@ const ListaSorteos = ({ sorteos }) => {
         setCurrentSorteo(sorteo)
         handleShowModal();
     }
+
+    const handleDelete = (sorteo) => {
+        setError(false);
+        setCurrentSorteo(sorteo)
+        axios
+            .delete("/api/sorteo/" + sorteo.id)
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log(err);
+
+                setError(true);
+
+                setTimeout(() => {
+                    setError(false);
+                }, 3000);
+                
+            })
+            .finally(() => {
+                router.refresh();
+            });
+    };
 
     return (
         <>
@@ -94,7 +118,7 @@ const ListaSorteos = ({ sorteos }) => {
                                         </td>
                                         <td className="px-6 py-4">
                                             <div className="flex justify-end gap-4">
-                                                <a x-data="{ tooltip: 'Delete' }" href="#">
+                                                <a x-data="{ tooltip: 'Delete' }" href="#"   onClick={() => handleDelete(sorteo)}>
                                                     <svg
                                                         xmlns="http://www.w3.org/2000/svg"
                                                         fill="none"
