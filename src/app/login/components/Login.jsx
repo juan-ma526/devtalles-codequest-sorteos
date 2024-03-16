@@ -27,7 +27,7 @@ const Login = () => {
         setEmail("");
         setPassword("");
         setUser(response);
-        router.push("/success");
+        router.push("/dashboard");
       }
     } catch (error) {
       console.log(error);
