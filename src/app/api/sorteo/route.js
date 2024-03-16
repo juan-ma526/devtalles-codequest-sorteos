@@ -5,20 +5,26 @@ import { prisma } from "../mongo/index";
 
 export async function GET(request) {
 
-  const sorteoData = await prisma.sorteo.findMany();
+  const sorteoData = await prisma.sorteo.findMany({
+    include: {
+        participantes: true,
+      }
+  });
 
   return NextResponse.json({ sorteoData });
 
 }
 
 export async function POST(request) {
-    const {name,description,startDate,image}=await request.json();
+    const {name,description,startDate,image, winner , status} = await request.json();
 
     const sorteoData={
         name,
         description,
         startDate,
-        image
+        image,
+        winner,
+        status
     }
 
     try {

@@ -27,13 +27,14 @@ export async function PATCH(request,segments) {
     const {id}=await segments.params;
     if(!id) return NextResponse.json({ error:'no enviaste un id' },{status:400});
 
-    const {name,description,startDate,status,image}=await request.json();
+    const {name,description,startDate,status,image,winner}=await request.json();
     const sorteoBody={
         name,
         description,
         startDate,
         status,
-        image
+        image,
+        winner
     }
 
     try {
@@ -59,6 +60,14 @@ export async function PATCH(request,segments) {
     if(!id) return NextResponse.json({ error:'no enviaste un id' },{status:400});
 
     try {
+
+
+        const participantDelete=await prisma.participante.deleteMany({
+            where:{
+                sorteoId:id
+            }
+        })
+
 
         const sorteoDelete=await prisma.sorteo.delete({
             where:{
