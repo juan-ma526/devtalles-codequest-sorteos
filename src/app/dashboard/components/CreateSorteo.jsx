@@ -40,6 +40,10 @@ const CreateSorteo = ({sorteo}) => {
 
 
         if(Object.keys(sorteo).length > 0){
+            inputs.startDate = sorteo.startDate;
+            inputs.status = sorteo.status;
+            inputs.image = sorteo.image;
+            inputs.winner = sorteo.winner;
             axios
             .patch("/api/sorteo/"+sorteo.id, inputs)
             .then((res) => {
@@ -55,6 +59,7 @@ const CreateSorteo = ({sorteo}) => {
             });
         } else {
             inputs.startDate = new Date();
+            inputs.status = true;
             inputs.image = '';
             inputs.winner = '';
             axios

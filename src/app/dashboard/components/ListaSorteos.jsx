@@ -19,6 +19,11 @@ const ListaSorteos = ({ sorteos }) => {
         handleShowModal();
     }
 
+    const showModalEdit = (sorteo) => {
+        setCurrentSorteo(sorteo)
+        handleShowModal();
+    }
+
     return (
         <>
             <section className="bg-white mt-6 p-4 rounded-lg">
@@ -106,7 +111,7 @@ const ListaSorteos = ({ sorteos }) => {
                                                         />
                                                     </svg>
                                                 </a>
-                                                <a x-data="{ tooltip: 'Edite' }" href="#">
+                                                <a x-data="{ tooltip: 'Edite' }" href="#"  onClick={() => showModalEdit(sorteo)}>
                                                     <svg
                                                         xmlns="http://www.w3.org/2000/svg"
                                                         fill="none"

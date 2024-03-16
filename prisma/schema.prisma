@@ -50,7 +50,7 @@ model Sorteo {
   name          String
   description   String
   startDate     DateTime
-  status        Boolean        @default(false)
+  status        Boolean        @default(true)
   image         String
   createdAt     DateTime       @default(now())
   participantes Participante[]
