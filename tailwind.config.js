@@ -13,6 +13,12 @@ module.exports = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
     },
+    extend:{
+      colors:{
+        'devtallesColorPlus':'#130c25',
+        'devtallesColor':'#1d1238'
+      }
+    }
   },
   plugins: [],
 };
