@@ -4,8 +4,8 @@ import { jwtAdapter } from "../../config/jwt.adapter";
 import { prisma } from "../../mongo";
 
 export async function GET(request) {
-    const cokkiesStore=cookies();
-    const {value:token}=cokkiesStore.get('token');
+    const cookiesStore=cookies();
+    const {value:token}=cookiesStore.get('token');
     if (!token) return NextResponse.json({ message: "No hay un token" },{status:400});
 
     const verifyToken=await jwtAdapter.validateToken(token);
