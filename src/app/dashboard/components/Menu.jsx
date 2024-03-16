@@ -12,7 +12,7 @@ const Menu = async () => {
     const { user } = useContext(UserContext);
     const handleLogout = async () => {
 
-        const res = await fetch(`http://localhost:3000/api/usuario/logout`, {
+        const res = await fetch(`${process.BACKEND_URL}/api/usuario/logout`, {
             method: 'POST', headers: {
                 'Content-Type': 'Appplication/json'
             }

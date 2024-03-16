@@ -15,7 +15,7 @@ export async function GET(request) {
         client_secret: process.env.ClientSecret,
         grant_type: "authorization_code",
         code: code,
-        redirect_uri: "http://localhost:3000/api/auth/discord/redirect",
+        redirect_uri: `${process.BACKEND_URL}/api/auth/discord/redirect`,
       });
 
       const output = await fetch("https://discord.com/api/v10/oauth2/token", {
