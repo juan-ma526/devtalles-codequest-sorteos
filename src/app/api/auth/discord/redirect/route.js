@@ -5,6 +5,9 @@ export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
     const code = searchParams.get("code");
+    const sorteoId = searchParams.get("state");
+
+    console.log(sorteoId);
 
     if (code) {
       const formData = new URLSearchParams({
@@ -63,28 +66,46 @@ export async function GET(request) {
 
       const serverFound = userServerData.find((server) => server.id === devTallesID);
 
+
       if (serverFound) {
-        const userAlreadyCreated = await prisma.participante.findUnique({
+
+        const participanteSelected = await prisma.participante.findFirst({
           where: {
             email: userInfoData.email,
+            sorteoId
           },
         });
 
-        if (userAlreadyCreated) {
-          const errorUrl = new URL("/error", request.url);
+        const sorteoSelected = await prisma.sorteo.findUnique({
+          where: {
+              id : sorteoId
+          },
+          include: {
+            participantes: true,
+          },
+      });
 
-          errorUrl.searchParams.set("from", request.nextUrl.pathname);
 
-          return NextResponse.redirect(errorUrl);
-        }
+      const participanteExistente = sorteoSelected.participantes.filter((participante) => participante.id === participanteSelected.id);
 
-        const participante = await prisma.participante.create({
+      if(participanteExistente.length > 0) {
+        const errorUrl = new URL("/error", request.url);
+        errorUrl.searchParams.set("from", request.nextUrl.pathname);
+        return NextResponse.redirect(errorUrl);
+      }
+
+
+      if (participanteExistente.length === 0) {
+        await prisma.participante.create({
           data: {
             email: userInfoData.email,
             username: userInfoData.username,
             avatar: userInfoData.avatar,
+            sorteoId: sorteoSelected.id,
           },
         });
+      }
+
       } else {
         const notfoundUrl = new URL("/user-notfound", request.url);
 
