@@ -12,7 +12,7 @@ export async function GET(request) {
 }
 
 export async function POST(request) {
-    const {name,description,startDate,image}=await request.json();
+    const {name,description,startDate,image} = await request.json();
 
     const sorteoData={
         name,
