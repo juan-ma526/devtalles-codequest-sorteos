@@ -41,12 +41,33 @@ const ListaSorteos = ({ sorteos }) => {
                 setTimeout(() => {
                     setError(false);
                 }, 3000);
-                
+
             })
             .finally(() => {
                 router.refresh();
             });
     };
+
+    const handleGenerateSorteo = (sorteo) => {
+        const participantes = sorteo.participantes;
+
+        const winner = participantes[(Math.floor(Math.random() * participantes.length))];
+
+        let inputs = sorteo;
+        inputs.winner = winner.username;
+
+        axios
+            .patch("/api/sorteo/"+sorteo.id, inputs)
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+            .finally(() => {
+                router.refresh();
+            });
+    }
 
     return (
         <>
@@ -68,7 +89,6 @@ const ListaSorteos = ({ sorteos }) => {
                         <thead className="bg-gray-50">
                             <tr>
                                 <th scope="col" className="px-6 py-4 font-medium text-gray-900">Name</th>
-                                <th scope="col" className="px-6 py-4 font-medium text-gray-900">State</th>
                                 <th scope="col" className="px-6 py-4 font-medium text-gray-900">Winner</th>
                                 <th scope="col" className="px-6 py-4 font-medium text-gray-900">Select Winner</th>
                                 <th scope="col" className="px-6 py-4 font-medium text-gray-900"></th>
@@ -92,14 +112,6 @@ const ListaSorteos = ({ sorteos }) => {
                                             </div>
                                         </th>
                                         <td className="px-6 py-4">
-                                            <span
-                                                className="inline-flex items-center gap-1 rounded-full bg-green-50 px-2 py-1 text-xs font-semibold text-green-600"
-                                            >
-                                                <span className="h-1.5 w-1.5 rounded-full bg-green-600"></span>
-                                                Active
-                                            </span>
-                                        </td>
-                                        <td className="px-6 py-4">
 
                                             {sorteo.winner ? <span
                                                 className="inline-flex items-center gap-1 rounded-full bg-violet-50 px-2 py-1 text-xs font-semibold text-violet-600"
@@ -110,15 +122,16 @@ const ListaSorteos = ({ sorteos }) => {
                                         </td>
                                         <td className="px-6 py-4">
                                             <div className="flex gap-2">
-                                           
-                                            <button class="bg-purple-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+
+                                                <button class="bg-purple-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" 
+                                                onClick={() => handleGenerateSorteo(sorteo)}>
                                                     Generate a Winner
-                                                    </button>
+                                                </button>
                                             </div>
                                         </td>
                                         <td className="px-6 py-4">
                                             <div className="flex justify-end gap-4">
-                                                <a x-data="{ tooltip: 'Delete' }" href="#"   onClick={() => handleDelete(sorteo)}>
+                                                <a x-data="{ tooltip: 'Delete' }" href="#" onClick={() => handleDelete(sorteo)}>
                                                     <svg
                                                         xmlns="http://www.w3.org/2000/svg"
                                                         fill="none"
@@ -135,7 +148,7 @@ const ListaSorteos = ({ sorteos }) => {
                                                         />
                                                     </svg>
                                                 </a>
-                                                <a x-data="{ tooltip: 'Edite' }" href="#"  onClick={() => showModalEdit(sorteo)}>
+                                                <a x-data="{ tooltip: 'Edite' }" href="#" onClick={() => showModalEdit(sorteo)}>
                                                     <svg
                                                         xmlns="http://www.w3.org/2000/svg"
                                                         fill="none"
