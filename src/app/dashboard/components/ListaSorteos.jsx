@@ -1,5 +1,24 @@
 "use client"
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import useModal from "../hooks/useModal";
+import CreateSorteo from "./CreateSorteo";
+
 const ListaSorteos = ({ sorteos }) => {
+
+    const router = useRouter();
+
+    const [error, setError] = useState(false);
+
+    const [currentSorteo, setCurrentSorteo] = useState({});
+
+    const [handleShowModal] = useModal('my_modal_1');
+
+    const showModalCreate = () => {
+        setCurrentSorteo({});
+        handleShowModal();
+    }
+
     return (
         <>
             <section className="bg-white mt-6 p-4 rounded-lg">
@@ -9,6 +28,7 @@ const ListaSorteos = ({ sorteos }) => {
 
                     <button type="text"
                         className="btn btn-secondary text-white"
+                        onClick={() => showModalCreate()}
                     >
                         Create Sorteo
                     </button>
@@ -112,7 +132,7 @@ const ListaSorteos = ({ sorteos }) => {
                     </table>
                 </div>
             </section>
-
+            <CreateSorteo sorteo={currentSorteo} />
         </>
     )
 }
