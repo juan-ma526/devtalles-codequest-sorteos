@@ -12,7 +12,7 @@ export const Page404 = () => {
           <span className="absolute inset-0 transition-transform translate-x-0.5 translate-y-0.5 bg-purple-500 group-hover:translate-y-0 group-hover:translate-x-0"></span>
 
           <span className="relative block px-8 py-3 bg-white border border-current font-extrabold">
-            <Link href="/">
+            <Link href={"/"}>
               <span>Go Home</span>
             </Link>
           </span>
