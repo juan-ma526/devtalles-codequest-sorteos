@@ -15,9 +15,9 @@ const Sorteo = ({ sorteo }) => {
     <>
       <>
         <div className="flex flex-col bg-white rounded-2xl shadow-xl px-8 py-8 sm:px-8 lg:px-8">
-          <div className="mb-12 space-y-4 h-30s">
+          <div className="mb-12 space-y-4 h-30">
             <h3 className="text-2xl font-semibold text-purple-900">{sorteo.name}</h3>
-            <p className="mb-6 h-30">{sorteo.description}</p>
+            <p className="mb-6 h-full">{sorteo.description}</p>
           </div>
           <button
             onClick={() => handleClick(sorteo.id)}
