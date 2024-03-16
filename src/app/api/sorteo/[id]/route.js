@@ -61,6 +61,14 @@ export async function PATCH(request,segments) {
 
     try {
 
+
+        const participantDelete=await prisma.participante.deleteMany({
+            where:{
+                sorteoId:id
+            }
+        })
+
+
         const sorteoDelete=await prisma.sorteo.delete({
             where:{
                 id:id
