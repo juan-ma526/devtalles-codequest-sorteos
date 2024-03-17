@@ -10,7 +10,7 @@ const Menu = () => {
   const router = useRouter();
 
   const handleLogout = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/usuario/logout`, {
+    const res = await fetch(`/api/usuario/logout`, {
       method: "POST",
       headers: {
         "Content-Type": "Appplication/json",

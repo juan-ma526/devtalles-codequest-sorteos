@@ -8,7 +8,7 @@ export function UserContextProvider({ children }) {
 
   useEffect(() => {
     if (!user) {
-      fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/usuario/verifyUser`, {
+      fetch(`/api/usuario/verifyUser`, {
         method: "GET",
         headers: {
           "Content-type": "application/json",

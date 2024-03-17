@@ -1,14 +1,18 @@
 import Sorteos from "./components/Sorteos";
 
-async function getSorteosList() {
-  const res = await fetch(`${process.env.BACKEND_URL}/api/sorteo`, { cache: "no-store" });
+const getSorteosList = async () => {
+  const res = await fetch(`/api/sorteo`, {
+    cache: "no-store",
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  });
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");
   }
 
   return res.json();
-}
+};
 
 export default async function Home() {
   const sorteos = await getSorteosList();
