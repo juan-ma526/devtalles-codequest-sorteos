@@ -4,7 +4,7 @@ import Loading from "../loading";
 import { Page404 } from "../components/Page404";
 
 async function getSorteosList() {
-  const res = await fetch(`http://localhost:3000/api/sorteo`, { cache: "no-store" });
+  const res = await fetch(`${process.env.BACKEND_URL}/api/sorteo`, { cache: "no-store" });
 
   if (!res.ok) {
     throw new Error("Failed to fetch data");

@@ -15,7 +15,7 @@ export async function GET(request) {
         client_secret: process.env.ClientSecret,
         grant_type: "authorization_code",
         code: code,
-        redirect_uri: `${process.env.BACKEND_URL}/api/auth/discord/redirect`,
+        redirect_uri: "http://localhost:3000/api/auth/discord/redirect",
       });
 
       const output = await fetch("https://discord.com/api/v10/oauth2/token", {
@@ -66,46 +66,43 @@ export async function GET(request) {
 
       const serverFound = userServerData.find((server) => server.id === devTallesID);
 
-
       if (serverFound) {
-
         const participanteSelected = await prisma.participante.findFirst({
           where: {
             email: userInfoData.email,
-            sorteoId
+            sorteoId,
           },
         });
 
         const sorteoSelected = await prisma.sorteo.findUnique({
           where: {
-              id : sorteoId
+            id: sorteoId,
           },
           include: {
             participantes: true,
           },
-      });
-
-
-      const participanteExistente = sorteoSelected.participantes.filter((participante) => participante.id === participanteSelected.id);
-
-      if(participanteExistente.length > 0) {
-        const errorUrl = new URL("/error", request.url);
-        errorUrl.searchParams.set("from", request.nextUrl.pathname);
-        return NextResponse.redirect(errorUrl);
-      }
-
-
-      if (participanteExistente.length === 0) {
-        await prisma.participante.create({
-          data: {
-            email: userInfoData.email,
-            username: userInfoData.username,
-            avatar: userInfoData.avatar,
-            sorteoId: sorteoSelected.id,
-          },
         });
-      }
 
+        const participanteExistente = sorteoSelected.participantes.filter(
+          (participante) => participante.id === participanteSelected.id
+        );
+
+        if (participanteExistente.length > 0) {
+          const errorUrl = new URL("/error", request.url);
+          errorUrl.searchParams.set("from", request.nextUrl.pathname);
+          return NextResponse.redirect(errorUrl);
+        }
+
+        if (participanteExistente.length === 0) {
+          await prisma.participante.create({
+            data: {
+              email: userInfoData.email,
+              username: userInfoData.username,
+              avatar: userInfoData.avatar,
+              sorteoId: sorteoSelected.id,
+            },
+          });
+        }
       } else {
         const notfoundUrl = new URL("/user-notfound", request.url);
 
