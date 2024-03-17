@@ -7,8 +7,6 @@ export async function GET(request) {
     const code = searchParams.get("code");
     const sorteoId = searchParams.get("state");
 
-    console.log(sorteoId);
-
     if (code) {
       const formData = new URLSearchParams({
         client_id: process.env.ClientID,
@@ -83,17 +81,16 @@ export async function GET(request) {
           },
         });
 
-        const participanteExistente = sorteoSelected.participantes.filter(
-          (participante) => participante.id === participanteSelected.id
-        );
-
-        if (participanteExistente.length > 0) {
-          const errorUrl = new URL("/error", request.url);
-          errorUrl.searchParams.set("from", request.nextUrl.pathname);
-          return NextResponse.redirect(errorUrl);
-        }
-
-        if (participanteExistente.length === 0) {
+        if (participanteSelected && participanteSelected.id) {
+          const participanteExistente = sorteoSelected.participantes.filter(
+            (participante) => participante.id === participanteSelected.id
+          );
+          if (participanteExistente.length > 0) {
+            const errorUrl = new URL("/error", request.url);
+            errorUrl.searchParams.set("from", request.nextUrl.pathname);
+            return NextResponse.redirect(errorUrl);
+          }
+        } else {
           await prisma.participante.create({
             data: {
               email: userInfoData.email,
@@ -111,16 +108,14 @@ export async function GET(request) {
         return NextResponse.redirect(notfoundUrl);
       }
 
-      // Given an incoming request...
       const successUrl = new URL("/success", request.url);
-      // Add ?from=/incoming-url to the /login URL
+
       successUrl.searchParams.set("from", request.nextUrl.pathname);
-      // And redirect to the new URL
+
       return NextResponse.redirect(successUrl);
     }
   } catch (error) {
     console.error("Error en la solicitud:", error.message);
-    // Aquí puedes manejar el error de manera apropiada, como devolver un código de estado 500 o un mensaje de error específico
     return NextResponse.error(error.message, { status: 500 });
   }
 }
