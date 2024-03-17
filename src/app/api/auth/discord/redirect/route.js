@@ -1,6 +1,8 @@
 import { prisma } from "@/app/api/mongo";
 import { NextResponse } from "next/server";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(request) {
   try {
     const { searchParams } = new URL(request.url);
