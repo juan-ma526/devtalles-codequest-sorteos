@@ -10,11 +10,12 @@ const Menu = () => {
   const router = useRouter();
 
   const handleLogout = async () => {
-    const res = await fetch(`/api/usuario/logout`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/usuario/logout`, {
       method: "POST",
       headers: {
         "Content-Type": "Appplication/json",
       },
+      credentials: "include",
     });
 
     if (!res.ok) {
@@ -42,7 +43,6 @@ const Menu = () => {
       >
         <div id="logo" className="my-4 px-6">
           <h1 className="text-lg md:text-2xl font-bold text-white">
-            {" "}
             Admin <span className="text-purple-500">Dashboard</span>
           </h1>
           <p className="text-slate-500 text-sm">Manage your actions</p>

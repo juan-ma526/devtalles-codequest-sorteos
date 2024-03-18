@@ -8,11 +8,12 @@ export function UserContextProvider({ children }) {
 
   useEffect(() => {
     if (!user) {
-      fetch(`/api/usuario/verifyUser`, {
+      fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/usuario/validate-token`, {
         method: "GET",
         headers: {
           "Content-type": "application/json",
         },
+        credentials: "include",
       })
         .then((response) => response.json())
         .then((data) => setUser(data))

@@ -37,7 +37,7 @@ const ListaSorteos = ({ sorteos }) => {
     setLoading(true);
     setCurrentSorteo(sorteo);
     axios
-      .delete("/api/sorteo/" + sorteo.id)
+      .delete(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/sorteo/` + sorteo.id)
       .then((res) => {
         console.log(res);
       })
@@ -55,7 +55,7 @@ const ListaSorteos = ({ sorteos }) => {
         router.refresh();
       });
   };
-
+  //este no funciona
   const handleGenerateSorteo = (sorteo) => {
     setLoading(true);
     const participantes = sorteo.participantes;
@@ -66,7 +66,7 @@ const ListaSorteos = ({ sorteos }) => {
     inputs.winner = winner.username;
 
     axios
-      .patch("/api/sorteo/" + sorteo.id, inputs)
+      .patch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/sorteo/` + sorteo.id, inputs)
       .then((res) => {
         console.log(res);
       })
@@ -87,7 +87,6 @@ const ListaSorteos = ({ sorteos }) => {
         <Loading />
       ) : (
         <div>
-          {" "}
           <section className="bg-white mt-6 p-4 rounded-lg">
             <div className="flex justify-between w-full">
               <h1 className="text-lg md:text-2xl font-bold">Sorteos</h1>
