@@ -1,7 +1,7 @@
 import Image from "next/image";
 import love from "../assets/love.png";
 
-export const Loading = () => {
+export const LoadingDev = () => {
   return (
     <div className="h-screen w-full flex flex-col justify-center items-center bg-purple-950">
       <Image src={love} alt="Imagen Error 404" loading="lazy" />

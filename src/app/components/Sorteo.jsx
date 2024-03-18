@@ -7,11 +7,16 @@ const Sorteo = ({ sorteo }) => {
   const router = useRouter();
 
   const handleClick = (id) => {
+    /*  router.push(
+      "https://discord.com/oauth2/authorize?client_id=1217103195063717938&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fapi%2Fauth%2Fdiscord%2Fredirect&scope=identify+guilds+email+connections+guilds.members.read+rpc.notifications.read&state=" +
+        id
+    ); */
     router.push(
       "https://discord.com/oauth2/authorize?client_id=1217103195063717938&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fapi%2Fauth%2Fdiscord%2Fredirect&scope=identify+guilds+email+connections+guilds.members.read+rpc.notifications.read&state=" +
         id
     );
   };
+
   return (
     <>
       <>

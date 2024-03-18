@@ -61,10 +61,7 @@ const Menu = () => {
             </Link>
           ))}
 
-          <Link
-            href={"/"}
-            className="w-full px-2 inline-flex space-x-2 items-center border-b border-slate-700 py-3 hover:bg-purple-500 transition ease-linear duration-150"
-          >
+          <div className="w-full px-2 inline-flex space-x-2 items-center border-b border-slate-700 py-3 hover:bg-purple-500 transition ease-linear duration-150">
             <div>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -77,10 +74,10 @@ const Menu = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
               </svg>
             </div>
-            <div onClick={handleLogout} className="flex flex-col">
+            <div onClick={handleLogout} className="flex flex-col cursor-pointer">
               <span className="text-lg font-bold leading-5 text-white">Log out</span>
             </div>
-          </Link>
+          </div>
         </div>
       </div>
     </>

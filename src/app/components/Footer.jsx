@@ -3,7 +3,7 @@ import { FaXTwitter, FaYoutube, FaLinkedinIn, FaDiscord, FaGlobe } from "react-i
 const Footer = () => {
   return (
     <>
-      <footer className="w-full h-[235px] mt-[41px] p-10 px-8 text-gray-700 bg-devtallesColorPlus border-t border-gray-200 shadow-sm body-font">
+      <footer className="w-full h-[235px] mt-[92px] p-10 px-8 text-gray-700 bg-devtallesColorPlus border-t border-gray-200 shadow-sm body-font">
         <div className="container flex flex-col items-start justify-between p-6 mx-auto md:flex-row">
           <div className="">
             <nav>

@@ -8,6 +8,7 @@ import Loading from "@/app/loading";
 import Image from "next/image";
 import { Page404 } from "@/app/components/Page404";
 import { UserContext } from "@/app/context/userContext";
+import { LoadingDev } from "@/app/components/LoadingDev";
 
 const ListaSorteos = ({ sorteos }) => {
   const { user } = useContext(UserContext);
@@ -55,7 +56,7 @@ const ListaSorteos = ({ sorteos }) => {
         router.refresh();
       });
   };
-  //este no funciona
+
   const handleGenerateSorteo = (sorteo) => {
     setLoading(true);
     const participantes = sorteo.participantes;

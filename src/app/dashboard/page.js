@@ -1,7 +1,6 @@
-import { Suspense, useContext } from "react";
+import { Suspense } from "react";
 import ListaSorteos from "./components/ListaSorteos";
-import Loading from "../loading";
-import { Page404 } from "../components/Page404";
+import { LoadingDev } from "../components/LoadingDev";
 
 async function getSorteosList() {
   const res = await fetch(`${process.env.BACKEND_URL}/api/sorteo`, { cache: "no-store", credentials: "include" });
@@ -15,11 +14,11 @@ async function getSorteosList() {
 
 export default async function Dashboard() {
   const sorteos = await getSorteosList();
-  const renderDontUser = () => <Page404 />;
+
   return (
     <div>
       <>
-        <Suspense fallback={<Loading />}>
+        <Suspense fallback={<LoadingDev />}>
           <div className="w-full">
             <ListaSorteos sorteos={sorteos.sorteoData} />
           </div>
