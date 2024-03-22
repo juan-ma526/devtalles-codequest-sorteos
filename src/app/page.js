@@ -1,6 +1,6 @@
 import { Banner } from "./components/Banner";
 import Footer from "./components/Footer";
-import Sorteos from "./components/Sorteos";
+import { SorteosGrid } from "./components/SorteosGrid";
 
 async function getSorteosList() {
   const res = await fetch(`${process.env.BACKEND_URL}/api/sorteo`, {
@@ -26,7 +26,7 @@ export default async function Home() {
 
   return (
     <>
-      <Sorteos sorteos={sorteos.sorteoData} />
+      <SorteosGrid sorteos={sorteos.sorteoData} />
       <Banner />
       <Footer />
     </>
