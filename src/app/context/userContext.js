@@ -16,7 +16,7 @@ export function UserContextProvider({ children }) {
         credentials: "include",
       })
         .then((response) => response.json())
-        .then((data) => setUser(data))
+        .then((data) => setUser(data.user))
         .catch((error) => console.error("Error fetching user:", error));
     }
   }, [user]);
