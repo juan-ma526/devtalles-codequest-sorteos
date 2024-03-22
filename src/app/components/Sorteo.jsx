@@ -3,14 +3,11 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-const Sorteo = ({ sorteo }) => {
+export const Sorteo = ({ sorteo }) => {
   const router = useRouter();
+  const fecha = sorteo.startDate.toString().split("T")[0];
 
   const handleClick = (id) => {
-    /*    router.push(
-      "https://discord.com/oauth2/authorize?client_id=1217103195063717938&response_type=code&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fapi%2Fauth%2Fdiscord%2Fredirect&scope=identify+guilds+email+connections+guilds.members.read+rpc.notifications.read&state=" +
-        id
-    ); */
     router.push(
       "https://discord.com/oauth2/authorize?client_id=1217103195063717938&response_type=code&redirect_uri=https%3A%2F%2Fbackend-devtallessorteo.onrender.com%2Fapi%2Fauth%2Fdiscord%2Fredirect&scope=identify+email+guilds+connections+guilds.members.read+rpc.notifications.read&state=" +
         id
@@ -18,24 +15,22 @@ const Sorteo = ({ sorteo }) => {
   };
 
   return (
-    <>
-      <>
-        <div className="flex flex-col bg-white rounded-2xl shadow-xl px-8 py-8 sm:px-8 lg:px-8">
-          <div className="mb-12 space-y-4 h-30">
-            <h3 className="text-2xl font-semibold text-purple-900">{sorteo.name}</h3>
-            <p className="mb-6 h-full">{sorteo.description}</p>
-          </div>
-          <button
-            onClick={() => handleClick(sorteo.id)}
-            className="px-8 py-4 text-xs font-bold text-white uppercase transition-all duration-150 bg-purple-500 rounded shadow outline-none active:bg-purple-600 hover:shadow-md focus:outline-none ease"
-          >
-            Participar
-          </button>
-          <Image height={600} width={900} alt={sorteo.title} src="/wink.png" className="w-2/3 ml-auto" loading="lazy" />
-        </div>
-      </>
-    </>
+    <div className="bg-white rounded-lg shadow-lg p-8">
+      <div className="relative overflow-hidden">
+        <Image className="object-cover w-full h-full" src="/wink.png" alt="Product" width={600} height={300} />
+        <div className="absolute inset-0 bg-purple-100 opacity-40"></div>{" "}
+      </div>
+      <h3 className="text-xl font-bold text-purple-900 mt-4">{sorteo.name}</h3>
+      <p className="text-gray-500 text-sm mt-2">{sorteo.description}</p>
+      <div className="flex items-center justify-between mt-4">
+        <span className="text-purple-900  font-bold text-lg">{fecha}</span>
+        <button
+          onClick={() => handleClick(sorteo.id)}
+          className="bg-purple-900 text-white py-2 px-4 rounded-full font-bold hover:bg-purple-400"
+        >
+          Participar
+        </button>
+      </div>
+    </div>
   );
 };
-
-export default Sorteo;

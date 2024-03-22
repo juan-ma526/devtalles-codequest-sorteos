@@ -19,7 +19,7 @@ export default async function Dashboard() {
     <div>
       <>
         <Suspense fallback={<LoadingDev />}>
-          <div className="w-full">
+          <div>
             <ListaSorteos sorteos={sorteos.sorteoData} />
           </div>
         </Suspense>
