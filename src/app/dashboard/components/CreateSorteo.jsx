@@ -43,11 +43,11 @@ const CreateSorteo = ({ sorteo }) => {
       inputs.status = sorteo.status;
       inputs.image = sorteo.image;
       inputs.winner = sorteo.winner;
-      console.log(inputs, "inputs");
+
       axios
         .patch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/sorteo/` + sorteo.id, inputs)
         .then((res) => {
-          console.log(res);
+          res;
         })
         .catch((err) => {
           console.log(err);
@@ -65,7 +65,7 @@ const CreateSorteo = ({ sorteo }) => {
       axios
         .post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/sorteo`, inputs)
         .then((res) => {
-          console.log(res);
+          res;
         })
         .catch((err) => {
           console.log(err);

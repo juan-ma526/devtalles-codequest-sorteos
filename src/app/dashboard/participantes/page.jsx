@@ -1,4 +1,3 @@
-import { LoadingDev } from "@/app/components/LoadingDev";
 import { TableGrid } from "./components/TableGrid";
 
 async function getParticipantesList() {

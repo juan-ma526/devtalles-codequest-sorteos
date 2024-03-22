@@ -1,7 +1,15 @@
+"use client";
+import { useContext } from "react";
 import { TableItem } from "./TableItem";
+import { UserContext } from "@/app/context/userContext";
+import { Page404 } from "@/app/components/Page404";
 
 export const TableGrid = ({ participantes }) => {
-  return (
+  const { user } = useContext(UserContext);
+
+  const dontUserRender = () => <Page404 />;
+
+  const userRender = () => (
     <>
       <table className="table table-xs">
         <thead>
@@ -22,6 +30,6 @@ export const TableGrid = ({ participantes }) => {
       </table>
     </>
   );
-};
 
-/* https://cdn.discordapp.com/avatars/65f9a6ed967e2a567dd45f03/e42fae74221a1ade28235f60a058ed60.png */
+  return <>{user ? userRender() : dontUserRender()}</>;
+};

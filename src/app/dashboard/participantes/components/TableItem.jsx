@@ -1,7 +1,6 @@
 "use client";
 
 import { LoadingDev } from "@/app/components/LoadingDev";
-import Loading from "@/app/loading";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { MdDelete } from "react-icons/md";

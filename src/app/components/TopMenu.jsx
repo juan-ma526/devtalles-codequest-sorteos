@@ -3,8 +3,11 @@ import Link from "next/link";
 import { FaHome, FaUsers, FaClipboard } from "react-icons/fa";
 import { AiOutlineLogout } from "react-icons/ai";
 import { usePathname, useRouter } from "next/navigation";
+import { useContext } from "react";
+import { UserContext } from "../context/userContext";
 
 export const TopMenu = () => {
+  const { user } = useContext(UserContext);
   const pathname = usePathname();
   const router = useRouter();
 
@@ -25,7 +28,7 @@ export const TopMenu = () => {
   };
 
   return (
-    <div className="sticky z-10 top-0 h-16 border-b bg-white ">
+    <div className={`${user ? "sticky z-10 top-0 h-16 border-b bg-white" : "hidden"}`}>
       <div className="px-6 flex items-center justify-between space-x-4">
         <Link href="/">
           <button className="w-12 h-16 -mr-2 border-r text-black">
