@@ -2,7 +2,10 @@ import Link from "next/link";
 
 export const Banner = () => {
   return (
-    <div className="mx-auto max-w-screen-lg mt-[92px] bg-purple-950 p-8 text-white md:flex md:items-center md:justify-around md:p-16 lg:rounded-xl">
+    <div
+      id="About"
+      className="mx-auto max-w-screen-lg mt-[92px] bg-purple-950 p-8 text-white md:flex md:items-center md:justify-around md:p-16 lg:rounded-xl"
+    >
       <div className="mr-10 mb-10 md:mb-0">
         <h2 className="mb-8 max-w-lg text-3xl font-bold sm:text-4xl">¡Explora nuestra comunidad!</h2>
         <ul className="flex max-w-xl flex-wrap gap-4">

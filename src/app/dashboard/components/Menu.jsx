@@ -1,9 +1,9 @@
 "use client";
-import Link from "next/link";
 import MenuItem from "./MenuItem";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
 import { UserContext } from "@/app/context/userContext";
+import { FaUsers, FaClipboard } from "react-icons/fa";
 
 const Menu = () => {
   const { user } = useContext(UserContext);
@@ -25,11 +25,16 @@ const Menu = () => {
     router.push("/login");
   };
 
-  const routes = [
+  const menuItems = [
     {
-      id: 1,
-      route: "dashboard",
+      icon: <FaClipboard />,
       name: "Sorteos",
+      path: "/dashboard",
+    },
+    {
+      icon: <FaUsers />,
+      name: "Participantes",
+      path: "/dashboard/participantes",
     },
   ];
 
@@ -45,20 +50,18 @@ const Menu = () => {
           <h1 className="text-lg md:text-2xl font-bold text-white">
             Admin <span className="text-purple-500">Dashboard</span>
           </h1>
-          <p className="text-slate-500 text-sm">Manage your actions</p>
+          <p className="text-slate-500 text-sm">Administre los Sorteos</p>
         </div>
         <div id="profile" className="px-6 py-10">
-          <p className="text-slate-500">Welcome back</p>
+          <p className="text-slate-500">Bienvenido!!</p>
         </div>
-        <div id="nav" className="w-full px-6">
-          {routes.map((item) => (
-            <Link
-              key={item.id}
-              href={item.route}
+        <div id="nav" className="space-y-2 tracking-wide mt-8">
+          {menuItems.map((item, index) => (
+            <MenuItem
+              item={item}
+              key={index}
               className="w-full px-2 inline-flex space-x-2 items-center border-b border-slate-700 py-3 hover:bg-purple-500 transition ease-linear duration-150"
-            >
-              <MenuItem item={item} />
-            </Link>
+            />
           ))}
 
           <div className="w-full px-2 inline-flex space-x-2 items-center border-b border-slate-700 py-3 hover:bg-purple-500 transition ease-linear duration-150">
