@@ -1,6 +1,7 @@
 import { Banner } from "./components/Banner";
 import Footer from "./components/Footer";
 import { SorteosGrid } from "./components/SorteosGrid";
+import { Team } from "./components/Team";
 
 async function getSorteosList() {
   const res = await fetch(`${process.env.BACKEND_URL}/api/sorteo`, {
@@ -28,6 +29,7 @@ export default async function Home() {
     <>
       <SorteosGrid sorteos={sorteos.sorteoData} />
       <Banner />
+      <Team />
       <Footer />
     </>
   );
