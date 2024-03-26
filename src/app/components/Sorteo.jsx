@@ -14,9 +14,9 @@ export const Sorteo = ({ sorteo }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-8">
+    <div className="bg-white flex flex-col justify-center gap-4 rounded-lg shadow-lg p-8 w-96 min-h-[590px]">
       <div className="relative overflow-hidden">
-        <Image className="object-cover w-full h-full" src="/wink.png" alt="Product" width={600} height={300} />
+        <Image className="m-auto object-cover w-full h-full" src="/wink.png" alt="Product" width={150} height={150} />
         <div className="absolute inset-0 bg-purple-100 opacity-40"></div>
         <div
           className={`${sorteo.winner ? "absolute inset-0 flex flex-col gap-3 items-center justify-center" : "hidden"}`}
