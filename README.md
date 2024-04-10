@@ -27,7 +27,7 @@ npx prisma generate
 
 ## Nota: Usuario por defecto
 
-**usuario** admin@google.com
+**usuario** admin@gmail.com
 **password** 1234
 
 ## Nota: Si solo quieres probar la App ya esta hecho el deploy solo usar el usuario para el login, o registrar uno nuevo y probarla
